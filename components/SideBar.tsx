@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import SideUserProfile from './SideUserProfile';
-
 const SideBar = () => {
 	const arrayUser = [
 		{
