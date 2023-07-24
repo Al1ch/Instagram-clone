@@ -10,8 +10,8 @@ type Props = {
 
 const Publication = ({ name, url, content, date }: Props) => {
 	return (
-		<div className=" flex flex-col gap-1 justify-items-start w-full px-32 rounded-xl p-8  bg-[#1b2936]">
-			<div className=" flex w-full items-center gap-2">
+		<div className=" flex flex-col gap-1 justify-items-start w-full  rounded-xl p-6  bg-[#1b2936]">
+			<div className=" flex w-full items-center justify-start gap-2">
 				<UserProfile
 					width={200}
 					height={300}

@@ -42,7 +42,7 @@ export default async function ProfilePage({ params }: { params: { name: string }
 		},
 	});
 	return (
-		<div className="w-full items-center bg-black ">
+		<div className="w-full flex flex-col  items-center bg-black ">
 			<div className="gap-16 flex flex-row items-center justify-center mt-8">
 				<Image className="w-32 h-32 rounded-full" alt="profile" src={profile} />
 				<div className="my-8 flex  ">
@@ -65,7 +65,7 @@ export default async function ProfilePage({ params }: { params: { name: string }
 					</div>
 				</div>
 			</div>
-			<div className=" w-full max-w-6xl flex flex-col items-center gap-4  m-auto">
+			<div className=" w-full max-w-2xl flex flex-col items-center  justify-center px-8 gap-4  ">
 				<div className="w-full flex justify-center items-center gap-16 ">
 					<Tab label="Publications" icon={<GridIcon />} />
 					{/* <Tab label="Publications" icon={<GridIcon />} />
