@@ -13,7 +13,6 @@ export default async function handler(res: NextApiResponse, req: NextApiRequest)
 					authorId: req.body.id,
 				},
 			});
-			console.log('posts', posts);
 			return res.status(200).json(posts);
 		} catch (e) {
 			res.status(500).json({ message: 'Something went wrong' });

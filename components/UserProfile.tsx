@@ -8,7 +8,6 @@ type Props = {
 };
 
 const UserProfile = ({ width, height, url }: Props) => {
-    console.log("URL", url)
 	return (
 		<Image
 			className="object-cover w-8 h-8 rounded-full"
