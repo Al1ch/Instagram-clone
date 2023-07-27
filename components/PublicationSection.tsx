@@ -18,7 +18,7 @@ const PublicationSection = ({ profilePic, name, id: userId, posts: postsInit }: 
 
 	const handleSubmit = async () => {
 		try {
-			const res = await axios.get<Post[]>('/api/posts', { params: { author: userId } });
+			const res = await axios.get<Post[]>('/api/posts', { params: { authorId: userId } });
 			setPosts(res.data);
 		} catch (e) {
 			console.log(e);
@@ -33,7 +33,7 @@ const PublicationSection = ({ profilePic, name, id: userId, posts: postsInit }: 
 			<div className="w-full bg-white ">
 				<PublicationForm image={profilePic ?? ''} authorId={userId} onSubmit={handleSubmit} />
 			</div>
-
+			{void console.log('posts', posts)}{' '}
 			{posts.map((post) => (
 				<Publication
 					key={post.id}

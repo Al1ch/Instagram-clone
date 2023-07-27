@@ -40,7 +40,6 @@ const PublicationForm = ({ onSubmit, authorId }: Props) => {
 				},
 			});
 			setContent('');
-
 			onSubmit();
 		} catch (err) {
 			console.log('okkkkkkk');

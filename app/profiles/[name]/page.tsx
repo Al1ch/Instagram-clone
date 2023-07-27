@@ -13,7 +13,6 @@ import { User, Post } from '@/models.types';
 import PublicationSection from '@/components/PublicationSection';
 
 export default async function ProfilePage({ params }: { params: { name: string } }) {
-	// const [posts, setPosts] = useState<Post[]>([]);
 	const infoUser = await prisma.user.findFirst({
 		where: {
 			name: params.name,
