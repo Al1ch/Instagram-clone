@@ -1,39 +1,41 @@
 import React from 'react';
 import Image from 'next/image';
 import SideUserProfile from './SideUserProfile';
-const SideBar = () => {
-	const arrayUser = [
-		{
-			name: 'Mia-John',
-			follower: 11.2,
-			url: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=faceare&facepad=3&w=688&h=688&q=100',
-			id: 1,
-		},
-		{
-			name: 'Arthur-Melo',
-			follower: 1.2,
-			url: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&h=880&q=80',
-			id: 2,
-		},
-		{
-			name: 'Olivia-Wathan',
-			follower: 8.6,
-			url: 'https://images.unsplash.com/photo-1488508872907-592763824245?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&h=1470&q=80',
-			id: 3,
-		},
-		{
-			name: 'Junior-REIS',
-			follower: 56.6,
-			url: 'https://images.unsplash.com/photo-1608174386344-80898cec6beb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&h=687&q=80',
-			id: 4,
-		},
-		{
-			name: 'Joseph-Gonzalez',
-			follower: 100.2,
-			url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&h=687&q=80',
-			id: 5,
-		},
-	];
+
+const SideBar = async () => {
+	const users = await prisma.user.findMany();
+	// const arrayUser = [
+	// 	{
+	// 		name: 'Mia-John',
+	// 		follower: 11.2,
+	// 		url: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=faceare&facepad=3&w=688&h=688&q=100',
+	// 		id: 1,
+	// 	},
+	// 	{
+	// 		name: 'Arthur-Melo',
+	// 		follower: 1.2,
+	// 		url: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&h=880&q=80',
+	// 		id: 2,
+	// 	},
+	// 	{
+	// 		name: 'Olivia-Wathan',
+	// 		follower: 8.6,
+	// 		url: 'https://images.unsplash.com/photo-1488508872907-592763824245?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&h=1470&q=80',
+	// 		id: 3,
+	// 	},
+	// 	{
+	// 		name: 'Junior-REIS',
+	// 		follower: 56.6,
+	// 		url: 'https://images.unsplash.com/photo-1608174386344-80898cec6beb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&h=687&q=80',
+	// 		id: 4,
+	// 	},
+	// 	{
+	// 		name: 'Joseph-Gonzalez',
+	// 		follower: 100.2,
+	// 		url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&h=687&q=80',
+	// 		id: 5,
+	// 	},
+	// ];
 
 	return (
 		<aside className="flex ">
@@ -163,12 +165,12 @@ const SideBar = () => {
 				<h2 className="px-5 text-lg font-medium text-gray-800 dark:text-white">Accounts</h2>
 
 				<div className="mt-8 space-y-4">
-					{arrayUser.map((user) => (
+					{users.map((user) => (
 						<SideUserProfile
 							key={user.id}
 							name={user.name}
 							follower={user.follower}
-							url={user.url}
+							url={user.profilePic ?? ''}
 						/>
 					))}
 				</div>

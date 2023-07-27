@@ -10,6 +10,7 @@ import UserProfile from '@/components/UserProfile';
 import Publication from '@/components/Publication';
 import PublicationForm from '@/components/PublicationForm';
 import { User, Post } from '@/models.types';
+import PublicationSection from '@/components/PublicationSection';
 
 export default async function ProfilePage({ params }: { params: { name: string } }) {
 	// const [posts, setPosts] = useState<Post[]>([]);
@@ -21,9 +22,7 @@ export default async function ProfilePage({ params }: { params: { name: string }
 
 	const posts = await prisma.post.findMany({
 		where: {
-			author: {
-				id: 1,
-			},
+			authorId: infoUser?.id,
 		},
 	});
 
@@ -53,30 +52,11 @@ export default async function ProfilePage({ params }: { params: { name: string }
 							<p>{infoUser?.follower}</p>
 							<p>{infoUser?.following}</p>
 						</div>
-						<div>BIO </div>
+						<div>{infoUser?.Bio} </div>
 					</div>
 				</div>
 			</div>
-			<div className=" w-full max-w-2xl flex flex-col items-center  justify-center px-8 gap-4  ">
-				<div className="w-full flex justify-center items-center gap-16 ">
-					<Tab label="Publications" icon={<GridIcon />} />
-				</div>
-				<div className="w-full bg-white ">
-					<PublicationForm
-						image={infoUser?.profilePic ?? ''}
-						author={infoUser?.id}
-						user={infoUser}
-					/>
-				</div>
-				{posts.map((post) => (
-					<Publication
-						key={post.id}
-						url={infoUser?.profilePic ?? ''}
-						name={infoUser?.name ?? ''}
-						content={post.content ?? ''}
-					/>
-				))}
-			</div>
+			<PublicationSection {...infoUser} posts={posts} />
 		</div>
 	);
 }

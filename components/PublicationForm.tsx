@@ -6,11 +6,12 @@ import axios from 'axios';
 
 type Props = {
 	image: string;
-	author?: number;
-	user: any; // A VOIR LA SOLUTION PARCE QUE VOILA QUOI
+	authorId?: number;
+	onSubmit: () => void;
 };
 
-const PublicationForm = ({ image, author, user }: Props) => {
+const PublicationForm = ({ onSubmit, authorId }: Props) => {
+	const [content, setContent] = useState('');
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
 	useEffect(() => {
@@ -29,24 +30,26 @@ const PublicationForm = ({ image, author, user }: Props) => {
 		adjustTextAreaHeight();
 	};
 
-	const [content, setContent] = useState('');
-
-	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault(); // tu enleve le comportement par defaut de ton post
 		try {
 			const res = await axios.post('/api/posts', {
 				body: {
 					content,
+					authorId,
 				},
 			});
+			setContent('');
+
+			onSubmit();
 		} catch (err) {
 			console.log('okkkkkkk');
 		}
-		// handleSubmit(content, user);
 	};
 
+	console.log('content', content);
 	return (
-		<form onSubmit={onSubmit} className="flex flex-col p-6 text-slate-50 bg-[#1b2936]">
+		<form onSubmit={handleSubmit} className="flex flex-col p-6 text-slate-50 bg-[#1b2936]">
 			<div className="flex items-center  justify-center gap-2">
 				<Image
 					className="object-cover w-8 h-8 rounded-full self-start"
@@ -60,7 +63,8 @@ const PublicationForm = ({ image, author, user }: Props) => {
 				<textarea
 					ref={textAreaRef}
 					className="border-none outline-0 bg-transparent w-full"
-					placeholder="What "
+					placeholder="What's Happening ? "
+					value={content}
 					onChange={(e) => {
 						setContent(e.target.value);
 						handleChange(e);
