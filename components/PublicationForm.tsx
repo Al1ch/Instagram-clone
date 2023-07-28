@@ -10,7 +10,7 @@ type Props = {
 	onSubmit: () => void;
 };
 
-const PublicationForm = ({ onSubmit, authorId }: Props) => {
+const PublicationForm = ({ onSubmit, authorId, image }: Props) => {
 	const [content, setContent] = useState('');
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -54,14 +54,12 @@ const PublicationForm = ({ onSubmit, authorId }: Props) => {
 					className="object-cover w-8 h-8 rounded-full self-start"
 					width="200"
 					height="300"
-					src={
-						'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&h=687&q=80'
-					}
+					src={image}
 					alt=""
 				/>
 				<textarea
 					ref={textAreaRef}
-					className="border-none outline-0 bg-transparent w-full"
+					className="border-none outline-0 bg-transparent w-full resize-none"
 					placeholder="What's Happening ? "
 					value={content}
 					onChange={(e) => {

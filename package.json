@@ -13,7 +13,8 @@
 		"db:seed": "npx dotenv -e .env.local -- prisma db seed",
 		"prisma:generate": "npx dotenv -e .env.local -- prisma generate",
 		"prisma:studio": "npx dotenv -e .env.local -- prisma studio",
-		"production:build": "npx prisma generate && npx prisma migrate deploy && next build"
+		"production:build": "npx prisma generate && npx prisma migrate deploy && next build",
+		"clean": "rm -rf node_modules **/node_modules && rm -rf yarn.lock **/yarn.lock && yarn cache clean && yarn install"
 	},
 	"dependencies": {
 		"@prisma/client": "^5.0.0",

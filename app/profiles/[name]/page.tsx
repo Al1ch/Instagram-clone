@@ -42,14 +42,18 @@ export default async function ProfilePage({ params }: { params: { name: string }
 							<p className="text-white">{params.name}</p>
 							<div className="flex items-center gap-2 ">
 								<Button label="Message" />
-								<Button label="Message" />
-								<Button label="Message" />
 							</div>
 						</div>
-						<div className="flex justify-between w-full max-w-xs text-white	">
+						<div className="flex gap-3 justify-between w-full max-w-xs text-white	">
 							<p>{infoUser?.name}</p>
-							<p>{infoUser?.follower}</p>
-							<p>{infoUser?.following}</p>
+							<div className="flex flex-col items-center">
+								<h3>Abonnée</h3>
+								<p>{infoUser?.follower}</p>
+							</div>
+							<div className="flex flex-col items-center">
+								<h3>Abonnement</h3>
+								<p> {infoUser?.following}</p>
+							</div>
 						</div>
 						<div>{infoUser?.Bio} </div>
 					</div>
