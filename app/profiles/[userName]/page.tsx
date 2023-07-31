@@ -1,9 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import Button from '@/components/Button';
-import profile from '@/assets/picture/profile.jpeg';
-import GridIcon from '@/assets/vectors/grid.svg';
-import Tab from '@/components/Tab';
 import prisma from '@/lib/prisma';
 import axios from 'axios';
 import UserProfile from '@/components/UserProfile';
@@ -12,12 +9,14 @@ import PublicationForm from '@/components/PublicationForm';
 import { User, Post } from '@/models.types';
 import PublicationSection from '@/components/PublicationSection';
 
-export default async function ProfilePage({ params }: { params: { name: string } }) {
+export default async function ProfilePage({ params }: { params: { userName: string } }) {
 	const infoUser = await prisma.user.findFirst({
 		where: {
-			name: params.name,
+			userName: params.userName,
 		},
 	});
+
+	console.log('INFO USER', infoUser);
 
 	const posts = await prisma.post.findMany({
 		where: {
@@ -39,7 +38,7 @@ export default async function ProfilePage({ params }: { params: { name: string }
 					<div className=" bg-black h-full"></div>
 					<div className=" flex flex-col gap-4 w-full  text-white ">
 						<div className=" flex items-center gap-x-4">
-							<p className="text-white">{params.name}</p>
+							<p className="text-white">{params.userName}</p>
 							<div className="flex items-center gap-2 ">
 								<Button label="Message" />
 							</div>

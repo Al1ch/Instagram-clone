@@ -22,7 +22,7 @@ const SideBar = async () => {
 			id: 2,
 			name: 'Users',
 			icon: <People />,
-			path: '/profiles',
+			path: `/profiles/${users[0].userName}}`,
 			isActive: false,
 		},
 	];
@@ -55,7 +55,7 @@ const SideBar = async () => {
 					{users.map((user) => (
 						<SideUserProfile
 							key={user.id}
-							name={user.name}
+							name={user.userName}
 							follower={user.follower}
 							url={user.profilePic ?? ''}
 						/>
