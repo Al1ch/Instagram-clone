@@ -1,3 +1,4 @@
+import SideBar from '@/components/SideBar';
 import './globals.css';
 import { Inter } from 'next/font/google';
 
@@ -11,7 +12,12 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>{children}</body>
+			<body>
+				<div className="flex flex-row min-h-screen min-w-screen  bg-black overflow-hidden">
+					<SideBar />
+					{children}
+				</div>
+			</body>
 		</html>
 	);
 }

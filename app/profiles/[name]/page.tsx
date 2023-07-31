@@ -25,8 +25,6 @@ export default async function ProfilePage({ params }: { params: { name: string }
 		},
 	});
 
-	console.log('BIO', infoUser?.userName);
-
 	return (
 		<div className="w-full flex flex-col  items-center bg-black ">
 			<div className="gap-16 flex flex-row items-center justify-center mt-8">
