@@ -26,7 +26,7 @@ const PublicationSection = ({ profilePic, name, id: userId, posts: postsInit }: 
 	};
 
 	return (
-		<div className=" w-full max-w-2xl flex flex-col items-center  justify-center px-8 gap-4  ">
+		<div className=" w-full max-w-2xl flex flex-col items-center  justify-center px-8 gap-4 mb-6 ">
 			<div className="w-full flex justify-center items-center gap-16 ">
 				<Tab label="Publications" />
 			</div>
@@ -40,6 +40,7 @@ const PublicationSection = ({ profilePic, name, id: userId, posts: postsInit }: 
 					url={profilePic ?? ''}
 					name={name ?? ''}
 					content={post.content ?? ''}
+					date={post.createdAt}
 				/>
 			))}
 		</div>

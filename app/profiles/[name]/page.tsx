@@ -25,6 +25,8 @@ export default async function ProfilePage({ params }: { params: { name: string }
 		},
 	});
 
+	console.log('BIO', infoUser?.userName);
+
 	return (
 		<div className="w-full flex flex-col  items-center bg-black ">
 			<div className="gap-16 flex flex-row items-center justify-center mt-8">
@@ -37,7 +39,7 @@ export default async function ProfilePage({ params }: { params: { name: string }
 				/>
 				<div className="my-8 flex  ">
 					<div className=" bg-black h-full"></div>
-					<div className=" flex flex-col gap-4 w-full">
+					<div className=" flex flex-col gap-4 w-full  text-white ">
 						<div className=" flex items-center gap-x-4">
 							<p className="text-white">{params.name}</p>
 							<div className="flex items-center gap-2 ">
@@ -45,7 +47,7 @@ export default async function ProfilePage({ params }: { params: { name: string }
 							</div>
 						</div>
 						<div className="flex gap-3 justify-between w-full max-w-xs text-white	">
-							<p>{infoUser?.name}</p>
+							<p>{infoUser?.userName}</p>
 							<div className="flex flex-col items-center">
 								<h3>Abonnée</h3>
 								<p>{infoUser?.follower}</p>

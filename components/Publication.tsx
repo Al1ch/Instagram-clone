@@ -5,7 +5,15 @@ type Props = {
 	name: string;
 	url?: string;
 	content: string;
-	date?: string;
+	date?: Date;
+};
+
+const getCorrectTimeFormat = (time?: number) => {
+	if (!time) return;
+	if (time < 10) {
+		return `0${time}`;
+	}
+	return time;
 };
 
 const Publication = ({ name, url, content, date }: Props) => {
@@ -22,8 +30,14 @@ const Publication = ({ name, url, content, date }: Props) => {
 				<p className="text-slate-50	">{content} </p>
 			</div>
 			<div className="flex gap-1">
-				<p className="text-slate-500"> Hour </p>
-				<p className="text-slate-500"> Date </p>
+				<p className="text-slate-500">
+					{getCorrectTimeFormat(date?.getHours())}:{getCorrectTimeFormat(date?.getMinutes())}:
+					{getCorrectTimeFormat(date?.getSeconds())}
+				</p>
+				<p className="text-slate-500">
+					{' '}
+					{date?.getDay()}/{date?.getMonth()}/{date?.getFullYear()}
+				</p>
 			</div>
 		</div>
 	);
