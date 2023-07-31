@@ -42,11 +42,10 @@ const PublicationForm = ({ onSubmit, authorId, image }: Props) => {
 			setContent('');
 			onSubmit();
 		} catch (err) {
-			console.log('okkkkkkk');
+			console.log(e);
 		}
 	};
 
-	console.log('content', content);
 	return (
 		<form onSubmit={handleSubmit} className="flex flex-col p-6 text-slate-50 bg-[#1b2936]">
 			<div className="flex items-center  justify-center gap-2">

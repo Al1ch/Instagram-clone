@@ -29,14 +29,15 @@ const Publication = ({ name, url, content, date }: Props) => {
 			<div>
 				<p className="text-slate-50	">{content} </p>
 			</div>
+
 			<div className="flex gap-1">
+				<p className="text-slate-500">
+					{getCorrectTimeFormat(date?.getDay())}/{getCorrectTimeFormat(date?.getMonth())}/
+					{date?.getFullYear()}
+				</p>
 				<p className="text-slate-500">
 					{getCorrectTimeFormat(date?.getHours())}:{getCorrectTimeFormat(date?.getMinutes())}:
 					{getCorrectTimeFormat(date?.getSeconds())}
-				</p>
-				<p className="text-slate-500">
-					{' '}
-					{date?.getDay()}/{date?.getMonth()}/{date?.getFullYear()}
 				</p>
 			</div>
 		</div>
