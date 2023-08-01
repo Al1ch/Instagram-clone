@@ -22,16 +22,19 @@ export default async function ProfilePage({ params }: { params: { userName: stri
 					className="w-32 h-32 rounded-full"
 					alt="profile"
 					src={user?.profilePic ?? ''}
-					width={50}
-					height={50}
+					width={100}
+					height={100}
 				/>
-				<div className="my-8 flex  ">
-					<div className=" bg-black h-full"></div>
+				<div className="my-8 flex min-w-[125]">
 					<div className=" flex flex-col gap-4 w-full  text-white ">
 						<div className=" flex items-center gap-x-4">
 							<p className="text-white">{params.userName}</p>
 							<div className="flex items-center gap-2 ">
-								<Button label="Message" />
+								<Button
+									label="Message"
+									className='flex items-center border border-solid rounded border-stone-400 p-0.5 "
+'
+								/>
 							</div>
 						</div>
 						<div className="flex gap-3 justify-between w-full max-w-xs text-white	">

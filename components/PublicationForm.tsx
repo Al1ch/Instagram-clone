@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 type Props = {
 	image: string;
 	authorId?: number;
-	createPublication: (content: string, authorId: number) => void;
+	createPublication: (content: string, authorId: number, path: string) => void;
 };
 
 const PublicationForm = ({ authorId, image, createPublication }: Props) => {
@@ -28,7 +28,7 @@ const PublicationForm = ({ authorId, image, createPublication }: Props) => {
 
 	const handlePublicationCreation = async (data: FormData) => {
 		const content = data.get('content');
-		await createPublication(content as string, authorId || 1);
+		await createPublication(content as string, authorId || 1, pathName);
 		formRef.current?.reset();
 	};
 

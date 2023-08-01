@@ -45,3 +45,16 @@ export const createPosts = async (content: string, authorId: number) => {
 		return { error: e };
 	}
 };
+
+export const deletePosts = async (id: number) => {
+	try {
+		await prisma.post.delete({
+			where: {
+				id: id,
+			},
+		});
+	} catch (e) {
+		console.log(e);
+		return { error: e };
+	}
+};

@@ -1,18 +1,28 @@
-import React from 'react';
+'use client';
+import React, { ButtonHTMLAttributes, HtmlHTMLAttributes } from 'react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { deletePublication } from '@/app/_action';
 
-type Props = {
+type Props = React.HtmlHTMLAttributes<HTMLButtonElement> & {
 	label?: string;
-	image?: Element;
+	image?: any;
+	// deletePublication?: (id: number, url: string) => void;
+	postId?: number;
 };
 
-const Button = ({ label, image }: Props) => {
+const Button = ({ className, label, image, postId, ...props }: Props) => {
+	const handleClick = async () => {
+		await deletePublication(postId || 1, pathName);
+	};
+	const pathName = usePathname();
 	return (
-		<div className="flex items-center border border-solid rounded border-stone-400 p-0.5 ">
+		<button className={className} onClick={handleClick}>
 			<div className="flex items-center justify-between">
-				<p className="text-sm text-white"> {label}</p>
+				{label && <p className="text-sm text-white"> {label}</p>}
+				{image && image}
 			</div>
-		</div>
+		</button>
 	);
 };
 

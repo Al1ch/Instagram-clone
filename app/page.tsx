@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import SideBar from '@/components/SideBar';
-import { Post, User } from '@/models.types';
 import Publication from '@/components/Publication';
+import { Post, User } from '@prisma/client';
 
 export default async function Home() {
 	const usersPosts: Post[] = await prisma.post.findMany();
@@ -20,6 +20,7 @@ export default async function Home() {
 					name={getUserAuthor(post.authorId)?.name ?? ''}
 					content={post.content ?? ''}
 					date={post.createdAt}
+					postId={post.id}
 				/>
 			))}
 		</div>
