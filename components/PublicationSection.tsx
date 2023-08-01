@@ -3,18 +3,18 @@ import React, { use, useEffect, useState } from 'react';
 import Tab from './Tab';
 import PublicationForm from './PublicationForm';
 import Publication from './Publication';
-import { User, Post } from '@/models.types';
+import { Post } from '@prisma/client';
 import axios from 'axios';
 
 type Props = {
 	profilePic?: string | null;
 	id?: number;
 	name?: string;
-	posts: Post[];
+	posts?: Post[] | null;
 };
 
 const PublicationSection = ({ profilePic, name, id: userId, posts: postsInit }: Props) => {
-	const [posts, setPosts] = useState<Post[]>(postsInit);
+	const [posts, setPosts] = useState<Post[] | null | undefined>(postsInit);
 
 	const handleSubmit = async () => {
 		try {
@@ -33,7 +33,7 @@ const PublicationSection = ({ profilePic, name, id: userId, posts: postsInit }: 
 			<div className="w-full bg-white ">
 				<PublicationForm image={profilePic ?? ''} authorId={userId} onSubmit={handleSubmit} />
 			</div>
-			{posts.map((post) => (
+			{posts?.map((post) => (
 				<Publication
 					key={post.id}
 					url={profilePic ?? ''}

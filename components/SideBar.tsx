@@ -5,10 +5,11 @@ import prisma from '@/lib/prisma';
 import People from '@/assets/vectors/people.svg';
 import Home from '@/assets/vectors/home.svg';
 import Link from 'next/link';
-import { User } from '@/models.types';
+import { User } from '@prisma/client';
+import { getUsers } from '@/lib/users';
 
 const SideBar = async () => {
-	const users: User[] = await prisma.user.findMany();
+	const { users } = await getUsers();
 
 	const menuContent = [
 		{
@@ -22,7 +23,7 @@ const SideBar = async () => {
 			id: 2,
 			name: 'Users',
 			icon: <People />,
-			path: `/profiles/${users[0].userName}}`,
+			path: users ? `/profiles/${users[0].userName}` : '/home',
 			isActive: false,
 		},
 	];
@@ -52,7 +53,7 @@ const SideBar = async () => {
 				<h2 className="px-5 text-lg font-medium text-gray-800 dark:text-white">Accounts</h2>
 
 				<div className="mt-8 space-y-4">
-					{users.map((user) => (
+					{users?.map((user) => (
 						<SideUserProfile
 							key={user.id}
 							name={user.userName}

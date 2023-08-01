@@ -8,21 +8,13 @@ import Publication from '@/components/Publication';
 import PublicationForm from '@/components/PublicationForm';
 import { User, Post } from '@/models.types';
 import PublicationSection from '@/components/PublicationSection';
+import { getPostsByAuthor } from '@/lib/posts';
+import { getUsersById } from '@/lib/users';
 
 export default async function ProfilePage({ params }: { params: { userName: string } }) {
-	const infoUser = await prisma.user.findFirst({
-		where: {
-			userName: params.userName,
-		},
-	});
+	const { user } = await getUsersById(params.userName);
 
-	console.log('INFO USER', infoUser);
-
-	const posts = await prisma.post.findMany({
-		where: {
-			authorId: infoUser?.id,
-		},
-	});
+	const { posts } = await getPostsByAuthor(user?.id);
 
 	return (
 		<div className="w-full flex flex-col  items-center bg-black ">
@@ -30,7 +22,7 @@ export default async function ProfilePage({ params }: { params: { userName: stri
 				<Image
 					className="w-32 h-32 rounded-full"
 					alt="profile"
-					src={infoUser?.profilePic ?? ''}
+					src={user?.profilePic ?? ''}
 					width={50}
 					height={50}
 				/>
@@ -44,21 +36,21 @@ export default async function ProfilePage({ params }: { params: { userName: stri
 							</div>
 						</div>
 						<div className="flex gap-3 justify-between w-full max-w-xs text-white	">
-							<p>{infoUser?.userName}</p>
+							<p>{user?.userName}</p>
 							<div className="flex flex-col items-center">
 								<h3>Abonnée</h3>
-								<p>{infoUser?.follower}</p>
+								<p>{user?.follower}</p>
 							</div>
 							<div className="flex flex-col items-center">
 								<h3>Abonnement</h3>
-								<p> {infoUser?.following}</p>
+								<p> {user?.following}</p>
 							</div>
 						</div>
-						<div>{infoUser?.Bio} </div>
+						<div>{user?.Bio} </div>
 					</div>
 				</div>
 			</div>
-			<PublicationSection {...infoUser} posts={posts} />
+			<PublicationSection {...user} posts={posts} />
 		</div>
 	);
 }
