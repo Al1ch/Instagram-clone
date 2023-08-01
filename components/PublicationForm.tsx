@@ -1,18 +1,18 @@
 'use client';
-import React, { useState, useEffect, useRef, RefObject } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Post, User } from '@/models.types';
-import axios from 'axios';
+import { usePathname } from 'next/navigation';
 
 type Props = {
 	image: string;
 	authorId?: number;
-	onSubmit: () => void;
+	createPublication: (content: string, authorId: number) => void;
 };
 
-const PublicationForm = ({ onSubmit, authorId, image }: Props) => {
-	const [content, setContent] = useState('');
+const PublicationForm = ({ authorId, image, createPublication }: Props) => {
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
+	const pathName = usePathname();
+	const formRef = useRef<HTMLFormElement>(null);
 
 	useEffect(() => {
 		adjustTextAreaHeight();
@@ -26,28 +26,18 @@ const PublicationForm = ({ onSubmit, authorId, image }: Props) => {
 		}
 	};
 
-	const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-		adjustTextAreaHeight();
-	};
-
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault(); // tu enleve le comportement par defaut de ton post
-		try {
-			const res = await axios.post('/api/posts', {
-				body: {
-					content,
-					authorId,
-				},
-			});
-			setContent('');
-			onSubmit();
-		} catch (err) {
-			console.log(e);
-		}
+	const handlePublicationCreation = async (data: FormData) => {
+		const content = data.get('content');
+		await createPublication(content as string, authorId || 1);
+		formRef.current?.reset();
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="flex flex-col p-6 text-slate-50 bg-[#1b2936]">
+		<form
+			ref={formRef}
+			action={handlePublicationCreation}
+			className="flex flex-col p-6 text-slate-50 bg-[#1b2936]"
+		>
 			<div className="flex items-center  justify-center gap-2">
 				<Image
 					className="object-cover w-8 h-8 rounded-full self-start"
@@ -57,14 +47,10 @@ const PublicationForm = ({ onSubmit, authorId, image }: Props) => {
 					alt=""
 				/>
 				<textarea
+					name="content"
 					ref={textAreaRef}
 					className="border-none outline-0 bg-transparent w-full resize-none"
 					placeholder="What's Happening ? "
-					value={content}
-					onChange={(e) => {
-						setContent(e.target.value);
-						handleChange(e);
-					}}
 				/>
 			</div>
 			<button

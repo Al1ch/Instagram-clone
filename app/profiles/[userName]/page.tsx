@@ -6,7 +6,6 @@ import axios from 'axios';
 import UserProfile from '@/components/UserProfile';
 import Publication from '@/components/Publication';
 import PublicationForm from '@/components/PublicationForm';
-import { User, Post } from '@/models.types';
 import PublicationSection from '@/components/PublicationSection';
 import { getPostsByAuthor } from '@/lib/posts';
 import { getUsersById } from '@/lib/users';

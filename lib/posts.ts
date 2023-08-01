@@ -29,7 +29,7 @@ export const getPosts = async () => {
 	}
 };
 
-const createPosts = async (content: string, authorId: number) => {
+export const createPosts = async (content: string, authorId: number) => {
 	try {
 		const post = await prisma.post.create({
 			data: {

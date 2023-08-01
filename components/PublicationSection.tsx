@@ -1,10 +1,10 @@
-'use client';
-import React, { use, useEffect, useState } from 'react';
+import React from 'react';
 import Tab from './Tab';
 import PublicationForm from './PublicationForm';
 import Publication from './Publication';
 import { Post } from '@prisma/client';
-import axios from 'axios';
+import { createPublication } from '@/app/_action';
+import { getPostsByAuthor } from '@/lib/posts';
 
 type Props = {
 	profilePic?: string | null;
@@ -13,17 +13,8 @@ type Props = {
 	posts?: Post[] | null;
 };
 
-const PublicationSection = ({ profilePic, name, id: userId, posts: postsInit }: Props) => {
-	const [posts, setPosts] = useState<Post[] | null | undefined>(postsInit);
-
-	const handleSubmit = async () => {
-		try {
-			const res = await axios.get<Post[]>('/api/posts', { params: { authorId: userId } });
-			setPosts(res.data);
-		} catch (e) {
-			console.log(e);
-		}
-	};
+const PublicationSection = async ({ profilePic, name, id: userId, posts: postsInit }: Props) => {
+	const { posts } = await getPostsByAuthor(userId);
 
 	return (
 		<div className=" w-full max-w-2xl flex flex-col items-center  justify-center px-8 gap-4 py-6 ">
@@ -31,7 +22,11 @@ const PublicationSection = ({ profilePic, name, id: userId, posts: postsInit }: 
 				<Tab label="Publications" />
 			</div>
 			<div className="w-full bg-white ">
-				<PublicationForm image={profilePic ?? ''} authorId={userId} onSubmit={handleSubmit} />
+				<PublicationForm
+					image={profilePic ?? ''}
+					authorId={userId}
+					createPublication={createPublication}
+				/>
 			</div>
 			{posts?.map((post) => (
 				<Publication
