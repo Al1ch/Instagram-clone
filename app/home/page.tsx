@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import SideBar from '@/components/SideBar';
-import { User } from '@/models.types';
 import Publication from '@/components/Publication';
 import { getPosts } from '@/lib/posts';
 import { getUsers } from '@/lib/users';
@@ -26,6 +25,8 @@ export default async function Home() {
 						name={getUserAuthor(post.authorId)?.name ?? ''}
 						content={post.content ?? ''}
 						date={post.createdAt}
+						disable={true}
+						postId={post.id}
 					/>
 				))}
 			</div>

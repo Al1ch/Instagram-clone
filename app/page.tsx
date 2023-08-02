@@ -21,6 +21,7 @@ export default async function Home() {
 					content={post.content ?? ''}
 					date={post.createdAt}
 					postId={post.id}
+					disable={true}
 				/>
 			))}
 		</div>

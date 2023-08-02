@@ -11,6 +11,7 @@ type Props = {
 	date?: Date;
 	key: number;
 	postId: number;
+	disable: boolean;
 };
 
 const getCorrectTimeFormat = (time?: number) => {
@@ -21,7 +22,7 @@ const getCorrectTimeFormat = (time?: number) => {
 	return time;
 };
 
-const Publication = ({ name, url, content, date, key, postId }: Props) => {
+const Publication = ({ name, url, content, date, postId, disable = false }: Props) => {
 	return (
 		<div className=" flex flex-col gap-1 justify-items-start w-full  rounded-xl p-6  bg-[#1b2936]">
 			<div className=" flex w-full items-center justify-start gap-2">
@@ -45,12 +46,13 @@ const Publication = ({ name, url, content, date, key, postId }: Props) => {
 						{getCorrectTimeFormat(date?.getSeconds())}
 					</p>
 				</div>
-				<Button
-					image={<Trash className={'hover:fill-red-600 transition-colors'} />}
-					// deletePublication={deletePublication}
-					className="cursor-pointer"
-					postId={postId}
-				/>
+				{!disable && (
+					<Button
+						image={<Trash className={'hover:fill-red-600 transition-colors'} />}
+						className="cursor-pointer"
+						postId={postId}
+					/>
+				)}
 			</div>
 		</div>
 	);
