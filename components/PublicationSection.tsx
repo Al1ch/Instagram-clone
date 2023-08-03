@@ -36,6 +36,7 @@ const PublicationSection = async ({ profilePic, name, id: userId, posts: postsIn
 					content={post.content ?? ''}
 					date={post.createdAt}
 					postId={post.id}
+					disable={false}
 				/>
 			))}
 		</div>
