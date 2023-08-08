@@ -4,7 +4,6 @@ import Button from '@/components/Button';
 import PublicationSection from '@/components/PublicationSection';
 import { getPostsByAuthor } from '@/lib/posts';
 import { getUsersById } from '@/lib/users';
-import Header from '@/components/Header';
 
 export default async function ProfilePage({ params }: { params: { userName: string } }) {
 	const { user } = await getUsersById(params.userName);

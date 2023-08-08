@@ -19,8 +19,6 @@ const SideBar = async ({ users }: Props) => {
 
 	const handleClick = () => {
 		setIsOpen(!isOpen);
-		console.log('CLIQCKED');
-		console.log('IS OPEN', isOpen);
 	};
 
 	const menuContent = [
@@ -42,8 +40,8 @@ const SideBar = async ({ users }: Props) => {
 
 	return (
 		<>
-			<Header OnClick={handleClick} />
-			<aside className={isOpen ? 'flex sm:flex' : 'hidden md:flex'}>
+			{/* <Header OnClick={handleClick} /> */}
+			<aside className={'hidden md:flex'}>
 				<div className="flex flex-col items-center w-16  py-8 space-y-8 bg-white dark:bg-gray-900 dark:border-gray-700 ">
 					<a href="#">
 						<Image

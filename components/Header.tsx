@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import BurgerMenuIcon from '@/assets/vectors/burgerMenu.svg';
 
 type Props = {

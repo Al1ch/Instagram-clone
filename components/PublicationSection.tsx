@@ -3,7 +3,6 @@ import Tab from './Tab';
 import PublicationForm from './PublicationForm';
 import Publication from './Publication';
 import { Post } from '@prisma/client';
-import { createPublication } from '@/app/_action';
 import { getPostsByAuthor } from '@/lib/posts';
 
 type Props = {
@@ -22,11 +21,7 @@ const PublicationSection = async ({ profilePic, name, id: userId, posts: postsIn
 				<Tab label="Publications" />
 			</div>
 			<div className="w-full bg-white ">
-				<PublicationForm
-					image={profilePic ?? ''}
-					authorId={userId}
-					createPublication={createPublication}
-				/>
+				<PublicationForm image={profilePic ?? ''} authorId={userId} />
 			</div>
 			{posts?.map((post) => (
 				<Publication
