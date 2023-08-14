@@ -11,7 +11,7 @@ export default async function ProfilePage({ params }: { params: { userName: stri
 	const { posts } = await getPostsByAuthor(user?.id);
 
 	return (
-		<div className="w-full flex flex-col  items-center bg-black ">
+		<div className="w-full flex flex-col self-start items-center bg-black ">
 			<div className="gap-16 flex flex-row items-center justify-center mt-8">
 				<Image
 					className="w-32 h-32 rounded-full"

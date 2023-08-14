@@ -23,6 +23,7 @@ const getCorrectTimeFormat = (time?: number) => {
 };
 
 const Publication = ({ name, url, content, date, postId, disable = false }: Props) => {
+	console.log('DATE', date);
 	return (
 		<div className=" flex flex-col gap-1 justify-items-start w-full  rounded-xl p-6  bg-[#1b2936]">
 			<div className=" flex w-full items-center justify-start gap-2">
