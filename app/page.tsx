@@ -2,6 +2,7 @@ import Image from 'next/image';
 import SideBar from '@/components/SideBar';
 import Publication from '@/components/Publication';
 import { Post, User } from '@prisma/client';
+import prisma from '@/lib/prisma';
 
 export default async function Home() {
 	const usersPosts: Post[] = await prisma.post.findMany();

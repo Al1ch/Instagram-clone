@@ -10,7 +10,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 	return (
 		<html lang="en">
 			<body>
-				<div className="flex flex-row min-h-screen min-w-screen  bg-black overflow-hidden">
+				<div className="flex flex-row min-h-screen min-w-screen  bg-slate-950 overflow-hidden">
 					<SideSection />
 					{children}
 				</div>

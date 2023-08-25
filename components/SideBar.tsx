@@ -43,18 +43,21 @@ const SideBar = async ({ users }: Props) => {
 			{/* <Header OnClick={handleClick} /> */}
 			<aside className={'hidden md:flex'}>
 				<div className="flex flex-col items-center w-16  py-8 space-y-8 bg-white dark:bg-gray-900 dark:border-gray-700 ">
-					<a href="#">
-						<Image
-							className="w-auto h-6"
-							src="https://merakiui.com/images/logo.svg"
-							width="200"
-							height="300"
-							alt=""
-						/>
-					</a>
+					<Image
+						className="w-auto h-6"
+						src="https://merakiui.com/images/logo.svg"
+						width="200"
+						height="300"
+						alt=""
+					/>
 					{menuContent.map((item) => {
 						return (
-							<Link href={`${item.path}`} key={item.id} className="">
+							<Link
+								href={`${item.path}`}
+								key={item.id}
+								aria-label="Click on this section"
+								className=""
+							>
 								{item.icon}
 							</Link>
 						);

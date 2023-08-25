@@ -54,7 +54,7 @@ const PublicationForm = ({ authorId, image }: Props) => {
 				/>
 			</div>
 			<button
-				className="self-end bg-[#1e9ae7] flex items-center justify-center px-4 py-1 rounded-xl"
+				className="self-end bg-[#1d9bf0] flex items-center justify-center px-4 py-1 rounded-xl"
 				type="submit"
 			>
 				Submit

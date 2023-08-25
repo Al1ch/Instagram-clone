@@ -17,7 +17,7 @@ const Button = ({ className, label, image, postId, ...props }: Props) => {
 	};
 	const pathName = usePathname();
 	return (
-		<button className={className} onClick={handleClick}>
+		<button className={className} onClick={handleClick} aria-label={props['aria-label']}>
 			<div className="flex items-center justify-between">
 				{label && <p className="text-sm text-white"> {label}</p>}
 				{image && image}
