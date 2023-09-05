@@ -1,13 +1,9 @@
-'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import SideUserProfile from './SideUserProfile';
 import People from '@/assets/vectors/people.svg';
 import Home from '@/assets/vectors/home.svg';
 import Link from 'next/link';
-import { getUsers } from '@/lib/users';
-import cn from 'classnames';
-import Header from './Header';
 import { User } from '@prisma/client';
 
 type Props = {
@@ -15,12 +11,6 @@ type Props = {
 };
 
 const SideBar = async ({ users }: Props) => {
-	const [isOpen, setIsOpen] = useState(false);
-
-	const handleClick = () => {
-		setIsOpen(!isOpen);
-	};
-
 	const menuContent = [
 		{
 			id: 1,
@@ -40,7 +30,6 @@ const SideBar = async ({ users }: Props) => {
 
 	return (
 		<>
-			{/* <Header OnClick={handleClick} /> */}
 			<aside className={'hidden md:flex'}>
 				<div className="flex flex-col items-center w-16  py-8 space-y-8 bg-white dark:bg-gray-900 dark:border-gray-700 ">
 					<Image

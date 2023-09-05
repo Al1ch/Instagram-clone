@@ -1,5 +1,4 @@
 import prisma from './prisma';
-import { Post } from '@prisma/client';
 
 export const getPostsByAuthor = async (authorId?: number | null) => {
 	try {

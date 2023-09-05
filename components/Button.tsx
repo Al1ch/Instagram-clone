@@ -7,7 +7,6 @@ import { deletePublication } from '@/app/_action';
 type Props = React.HtmlHTMLAttributes<HTMLButtonElement> & {
 	label?: string;
 	image?: any;
-	// deletePublication?: (id: number, url: string) => void;
 	postId?: number;
 };
 
@@ -17,7 +16,7 @@ const Button = ({ className, label, image, postId, ...props }: Props) => {
 	};
 	const pathName = usePathname();
 	return (
-		<button className={className} onClick={handleClick} aria-label={props['aria-label']}>
+		<button className={className} onClick={handleClick} {...props}>
 			<div className="flex items-center justify-between">
 				{label && <p className="text-sm text-white"> {label}</p>}
 				{image && image}

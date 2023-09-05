@@ -2,13 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import Button from '@/components/Button';
 import PublicationSection from '@/components/PublicationSection';
-import { getPostsByAuthor } from '@/lib/posts';
 import { getUsersById } from '@/lib/users';
 
 export default async function ProfilePage({ params }: { params: { userName: string } }) {
 	const { user } = await getUsersById(params.userName);
-
-	const { posts } = await getPostsByAuthor(user?.id);
 
 	return (
 		<div className="w-full flex flex-col self-start items-center">
@@ -23,12 +20,12 @@ export default async function ProfilePage({ params }: { params: { userName: stri
 				<div className="my-8 flex min-w-[125]">
 					<div className=" flex flex-col gap-4 w-full  text-white ">
 						<div className=" flex items-center gap-x-4">
-							<p className="text-white">{params.userName}</p>
+							<p className="text-white">{params.userName} </p>
 							<div className="flex items-center gap-2 ">
 								<Button
+									aria-label="Message"
 									label="Message"
-									className='flex items-center border border-solid rounded border-stone-400 p-0.5 "
-'
+									className="flex items-center border border-solid rounded border-stone-400 p-0.5"
 								/>
 							</div>
 						</div>
@@ -47,7 +44,7 @@ export default async function ProfilePage({ params }: { params: { userName: stri
 					</div>
 				</div>
 			</div>
-			<PublicationSection {...user} posts={posts} />
+			<PublicationSection {...user} />
 		</div>
 	);
 }
